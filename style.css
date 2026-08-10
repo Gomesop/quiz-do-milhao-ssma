@@ -841,6 +841,45 @@ html, body {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* ---- nada de pergunta ou alternativa cortada ----
+   O body é overflow:hidden e as colunas do palco não rolavam: em tela de altura
+   menor as alternativas C e D ficavam atrás da barra inferior, sem como alcançá-las.
+   Agora cada coluna rola por dentro e o conteúdo nunca some. */
+.left-panel, .center-panel, .right-panel { min-height: 0; }
+.left-panel {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+/* O enunciado fica sempre à vista: quem rola é a lista de alternativas. */
+.center-panel { overflow: hidden; }
+.question-card { flex: 0 0 auto; }
+.confirm-panel { flex: 0 0 auto; }
+.options-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-right: 2px;
+}
+/* as alternativas mantêm a altura natural do texto em vez de esticar */
+.btn-option { flex: 0 0 auto; }
+.prize-list { overflow-y: auto; min-height: 0; }
+
+/* Telas de pouca altura (notebook, janela reduzida): compacta antes de precisar rolar */
+@media (min-width: 1025px) and (max-height: 780px) {
+  .question-card { padding: 14px 16px; }
+  .question-text { font-size: 1.08rem; min-height: 0; }
+  .options-grid { gap: 8px; }
+  .btn-option { padding: 10px 14px; }
+  .option-text { font-size: .92rem; line-height: 1.3; }
+  .option-letter { width: 30px; height: 30px; font-size: .9rem; }
+  .host-avatar { font-size: 1.8rem; margin-bottom: 2px; }
+  .host-card { padding: 8px; }
+  .btn-lifeline { padding: 8px 6px; }
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .tv-stage {

@@ -234,6 +234,9 @@ class ShowDoMilhaoUI {
 
     // Update Options
     this.clearSelectedOptions();
+    // pergunta nova começa pela alternativa A, mesmo que a anterior estivesse rolada
+    const grade = document.querySelector('.options-grid');
+    if (grade) grade.scrollTop = 0;
     q.options.forEach((optText, idx) => {
       const optEl = document.getElementById(`opt-${idx}`);
       optEl.textContent = optText;
