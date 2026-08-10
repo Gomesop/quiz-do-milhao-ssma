@@ -890,9 +890,13 @@ html, body {
      As ajudas ficam — sem elas o jogo perde metade da mecânica no celular. */
   .right-panel { display: none; }
   .host-card { display: none; }
-  .lifelines-container { padding: 8px; }
+  /* flex: 1 vinha do layout de coluna do desktop e deixava uma faixa vazia
+     embaixo dos quatro botões */
+  .lifelines-container { padding: 8px; flex: 0 0 auto; }
   .lifelines-container h3 { display: none; }
-  .lifelines-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  /* align-items: start impede que os botões estiquem e sobre caixa vazia */
+  .lifelines-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; align-items: start; }
+  .left-panel { flex: 0 0 auto; overflow: visible; }
   .btn-lifeline { flex-direction: column; padding: 6px 3px; gap: 2px; min-height: 0; }
   .ll-icon { font-size: 1.15rem; }
   .ll-name { font-size: .58rem; letter-spacing: 0; }
