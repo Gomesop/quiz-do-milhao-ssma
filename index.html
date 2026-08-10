@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz do Milhão SSMA - Saúde, Segurança e Meio Ambiente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="hs.css?v=1">
+  <link rel="icon" href="logo.png">
+  <meta name="theme-color" content="#0b3d6b">
+  <meta name="description" content="Quiz do Milhão SSMA: quiz gratuito de segurança do trabalho, saúde ocupacional e meio ambiente — Hora da Segurança.">
+  <script>
+    window.HS_CONFIG = {
+      treinamento: 'Quiz do Milhão SSMA · Segurança, Saúde e Meio Ambiente',
+      titulo: 'Quiz do Milhão SSMA',
+      subtitulo: 'Segurança, saúde e meio ambiente · gratuito'
+    };
+  </script>
+  <script src="hs.js?v=1"></script>
+</head>
+<body>
+  <!-- Background TV Studio Lights & Beams -->
+  <div class="studio-background">
+    <div class="light-beam beam-left"></div>
+    <div class="light-beam beam-right"></div>
+    <div class="spotlight spot-center"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div id="app" class="game-container">
+    <!-- Header: TV Show Banner & Controls -->
+    <header class="tv-header">
+      <div class="brand-logo">
+        <span class="logo-icon">🏆</span>
+        <div class="logo-text">
+          <h1>QUIZ DO MILHÃO</h1>
+          <h2>EDIÇÃO SSMA & MEIO AMBIENTE</h2>
+        </div>
+      </div>
+
+      <div class="top-controls">
+        <button id="btn-sound" class="btn-icon" title="Alternar Som">🔊</button>
+        <button id="btn-quit" class="btn-danger" title="Parar e Levar Prêmio">PARAR ✋</button>
+      </div>
+    </header>
+
+    <!-- Main TV Stage Grid -->
+    <main class="tv-stage">
+      <!-- Left Panel: Host & Lifelines -->
+      <section class="left-panel">
+        <div class="host-card">
+          <div class="host-avatar">🎙️</div>
+          <div class="host-speech">
+            <p id="host-message">"Valendo R$ 1 MIL! Qual é a resposta certa?"</p>
+          </div>
+        </div>
+
+        <div class="lifelines-container">
+          <h3>AJUDAS DISPONÍVEIS</h3>
+          <div class="lifelines-grid">
+            <button id="help-univ" class="btn-lifeline" title="Consultar 3 Universitários da Segurança">
+              <span class="ll-icon">🎓</span>
+              <span class="ll-name">UNIVERSITÁRIOS</span>
+              <span class="ll-status">3 OPINIÕES</span>
+            </button>
+            <button id="help-cards" class="btn-lifeline" title="Virar Cartas e Eliminar Opções Erradas">
+              <span class="ll-icon">🃏</span>
+              <span class="ll-name">CARTAS</span>
+              <span class="ll-status">REI A 3</span>
+            </button>
+            <button id="help-plates" class="btn-lifeline" title="Consultar Placas do Auditório CIPA">
+              <span class="ll-icon">📊</span>
+              <span class="ll-name">PLACAS CIPA</span>
+              <span class="ll-status">AUDITÓRIO</span>
+            </button>
+            <button id="help-skip" class="btn-lifeline" title="Pular Pergunta (Restam 3)">
+              <span class="ll-icon">⏭️</span>
+              <span class="ll-name">PULAR</span>
+              <span id="skip-count" class="ll-status">3 RESTANTES</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Center Panel: Question & Options -->
+      <section class="center-panel">
+        <!-- Question Display Box -->
+        <div class="question-card">
+          <div class="question-header">
+            <span id="question-number" class="badge-level">PERGUNTA 1 DE 16</span>
+            <span id="question-category" class="badge-category">EPI & EPC</span>
+          </div>
+          <h2 id="question-text" class="question-text">Carregando pergunta...</h2>
+        </div>
+
+        <!-- 4 Answer Options (A, B, C, D) -->
+        <div class="options-grid">
+          <button class="btn-option" data-option="0">
+            <span class="option-letter">A</span>
+            <span class="option-text" id="opt-0">Opção A</span>
+          </button>
+          <button class="btn-option" data-option="1">
+            <span class="option-letter">B</span>
+            <span class="option-text" id="opt-1">Opção B</span>
+          </button>
+          <button class="btn-option" data-option="2">
+            <span class="option-letter">C</span>
+            <span class="option-text" id="opt-2">Opção C</span>
+          </button>
+          <button class="btn-option" data-option="3">
+            <span class="option-letter">D</span>
+            <span class="option-text" id="opt-3">Opção D</span>
+          </button>
+        </div>
+
+        <!-- Confirm Answer Action Banner -->
+        <div id="confirm-panel" class="confirm-panel hidden">
+          <p id="confirm-prompt">"Você tem certeza disso?"</p>
+          <div class="confirm-buttons">
+            <button id="btn-confirm-yes" class="btn-gold">CERTA RESPOSTA! 👍</button>
+            <button id="btn-confirm-no" class="btn-secondary">TROCAR RESPOSTA 🔄</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Prize Ladder -->
+      <aside class="right-panel">
+        <div class="prize-ladder-card">
+          <h3>ESCADA DO PRÊMIO</h3>
+          <ul id="prize-ladder" class="prize-list">
+            <!-- Dynamically Rendered 16 Prize Levels -->
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Bottom Status Bar -->
+    <footer class="status-bar">
+      <div class="status-box">
+        <span class="lbl">SE ACERTAR:</span>
+        <span id="val-win" class="val gold">R$ 1 MIL</span>
+      </div>
+      <div class="status-box">
+        <span class="lbl">SE PARAR:</span>
+        <span id="val-stop" class="val cyan">R$ 0</span>
+      </div>
+      <div class="status-box">
+        <span class="lbl">SE ERRAR:</span>
+        <span id="val-lose" class="val red">R$ 0</span>
+      </div>
+    </footer>
+
+    <!-- MODAL 1: Cartas Help (Rei a 3) -->
+    <div id="modal-cards" class="modal-overlay hidden">
+      <div class="modal-card">
+        <h2>🃏 ESCOLHA UMA CARTA</h2>
+        <p>Vire uma carta para eliminar até 3 alternativas erradas!</p>
+        <div class="cards-deck">
+          <button class="card-btn" data-card="0">❓</button>
+          <button class="card-btn" data-card="1">❓</button>
+          <button class="card-btn" data-card="2">❓</button>
+          <button class="card-btn" data-card="3">❓</button>
+        </div>
+        <p id="cards-result" class="modal-info"></p>
+        <button id="btn-close-cards" class="btn-gold hidden">CONTINUAR JOGANDO</button>
+      </div>
+    </div>
+
+    <!-- MODAL 2: Placas CIPA Help -->
+    <div id="modal-plates" class="modal-overlay hidden">
+      <div class="modal-card">
+        <h2>📊 VOTAÇÃO DAS PLACAS DO AUDITÓRIO CIPA</h2>
+        <p>Porcentagem de votos dos membros da CIPA e brigadistas:</p>
+        <div id="plates-bars" class="plates-bars">
+          <!-- Rendered Bars for A, B, C, D -->
+        </div>
+        <button id="btn-close-plates" class="btn-gold">ENTENDIDO!</button>
+      </div>
+    </div>
+
+    <!-- MODAL 3: Universitários SSMA Help -->
+    <div id="modal-univ" class="modal-overlay hidden">
+      <div class="modal-card">
+        <h2>🎓 OPINIÃO DOS 3 ESPECIALISTAS SSMA</h2>
+        <div id="univ-list" class="univ-list">
+          <!-- Rendered opinions of 3 specialists -->
+        </div>
+        <button id="btn-close-univ" class="btn-gold">OBRIGADO, ESPECIALISTAS!</button>
+      </div>
+    </div>
+
+    <!-- MODAL 4: Start Game / Victory / Game Over -->
+    <div id="modal-screen" class="modal-overlay">
+      <div class="modal-card screen-card">
+        <h1 id="screen-title">QUIZ DO MILHÃO SSMA</h1>
+        <div class="screen-icon" id="screen-icon">🏆</div>
+        <p id="screen-subtitle">Teste seus conhecimentos em Saúde Ocupacional, Segurança no Trabalho e Meio Ambiente e ganhe R$ 1 MILHÃO!</p>
+
+        <div class="screen-badges" id="screen-badges">
+          <span class="badge-ssma">💰 PRÊMIO DE R$ 1.000.000</span>
+          <span class="badge-ssma">🛡️ SAÚDE & SEGURANÇA (NRs)</span>
+          <span class="badge-ssma">🌿 MEIO AMBIENTE & ISO 14001</span>
+        </div>
+
+        <div id="screen-prize-box" class="final-prize-box hidden">
+          <span>SEU PRÊMIO FINAL:</span>
+          <h2 id="final-prize-val" class="gold">R$ 0</h2>
+        </div>
+
+        <button id="btn-screen-action" class="btn-gold btn-large">COMEÇAR O JOGO 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

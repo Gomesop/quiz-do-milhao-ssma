@@ -1,0 +1,204 @@
+/* Camada padrão Hora da Segurança — marca, cadastro e publicidade.
+   Prefixo hs- em tudo para não colidir com o CSS do jogo. */
+
+:root {
+  --hs-azul: #0b3d6b;
+  --hs-azul-claro: #1565c0;
+  --hs-ambar: #f59e0b;
+  --hs-vermelho: #dc2626;
+  --hs-tinta: #12212f;
+  --hs-borda: #d8e2ec;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- encaixe no layout do jogo ----------
+   Os jogos usam `height: 100vh` no container e `overflow: hidden` no body.
+   Com o topo e o rodapé da Hora da Segurança somados, o conteúdo passava da tela
+   e os controles de toque ficavam cortados no celular. Aqui o body vira uma coluna
+   e o jogo ocupa exatamente o espaço que sobra. */
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 100dvh;
+}
+body > #app-container,
+body > #app {
+  flex: 1 1 auto;
+  height: auto !important;
+  min-height: 0;
+}
+.hs-topo, .hs-rodape { flex: 0 0 auto; }
+
+/* ---------- topo e rodapé ---------- */
+
+.hs-topo {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  align-items: center; justify-content: space-between;
+  padding: 8px clamp(12px, 3vw, 24px);
+  padding-top: calc(8px + env(safe-area-inset-top));
+  background: linear-gradient(135deg, var(--hs-azul), var(--hs-azul-claro));
+  color: #fff;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  box-shadow: 0 3px 14px rgba(11, 61, 107, .28);
+  position: relative; z-index: 40;
+}
+.hs-topo-marca { display: flex; align-items: center; gap: 11px; text-decoration: none; color: #fff; min-width: 0; }
+.hs-topo-marca img { width: clamp(30px, 7vw, 40px); height: auto; border-radius: 8px; background: #fff; padding: 3px; }
+.hs-topo-marca strong { display: block; font-size: clamp(.9rem, 2.5vw, 1.05rem); line-height: 1.2; }
+.hs-topo-marca small { display: block; font-size: clamp(.66rem, 1.9vw, .78rem); opacity: .85; }
+.hs-topo-link {
+  color: #fff; text-decoration: none; font-weight: 600;
+  font-size: clamp(.7rem, 2vw, .82rem);
+  background: rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 999px; padding: 5px 13px; white-space: nowrap;
+}
+
+.hs-rodape {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center; align-items: center;
+  padding: 12px 14px calc(14px + env(safe-area-inset-bottom));
+  background: var(--hs-azul); color: rgba(255, 255, 255, .85);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(.72rem, 2vw, .82rem);
+  position: relative; z-index: 40;
+}
+.hs-rodape a { color: #fff; text-decoration: none; font-weight: 600; }
+.hs-rodape a:hover { text-decoration: underline; }
+
+/* ---------- telas sobrepostas ---------- */
+
+.hs-tela {
+  position: fixed; inset: 0; z-index: 9000;
+  display: grid; place-items: center;
+  padding: clamp(12px, 4vw, 28px);
+  background: rgba(6, 18, 30, .82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow-y: auto;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+/* ---------- cadastro ---------- */
+
+.hs-card {
+  width: 100%; max-width: 460px;
+  background: #fff; color: var(--hs-tinta);
+  border-radius: 18px; padding: clamp(20px, 5vw, 32px);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, .35);
+}
+.hs-selo {
+  display: inline-block; background: var(--hs-ambar); color: #3b2200;
+  border-radius: 999px; padding: 5px 14px;
+  font-size: clamp(.7rem, 2vw, .8rem); font-weight: 700;
+}
+.hs-card h2 { font-size: clamp(1.25rem, 4.4vw, 1.7rem); margin: 14px 0 6px; line-height: 1.2; }
+.hs-sub { color: #5b6b7a; font-size: clamp(.85rem, 2.4vw, .95rem); margin: 0 0 18px; }
+.hs-card label { display: block; font-weight: 700; font-size: clamp(.82rem, 2.3vw, .9rem); margin: 12px 0 6px; }
+.hs-card .hs-opc { font-weight: 400; color: #5b6b7a; }
+/* Os jogos aplicam `* { user-select: none }`, o que impede o clique de dar foco
+   nos campos de texto. Aqui a seleção é devolvida explicitamente ao cadastro. */
+.hs-tela, .hs-tela * {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+.hs-card input, .hs-card label, .hs-card p, .hs-card h2 {
+  -webkit-user-select: text;
+  user-select: text;
+}
+.hs-card input {
+  width: 100%; box-sizing: border-box; padding: 12px 14px;
+  border: 2px solid var(--hs-borda); border-radius: 12px;
+  font-family: inherit; font-size: 1rem; background: #fbfdff; color: var(--hs-tinta);
+  pointer-events: auto;
+  touch-action: manipulation;
+  cursor: text;
+}
+.hs-card input:focus { outline: none; border-color: var(--hs-azul-claro); background: #fff; }
+.hs-erro { display: block; color: var(--hs-vermelho); font-size: .8rem; margin-top: 5px; font-weight: 600; }
+.hs-nota { font-size: clamp(.72rem, 2vw, .8rem); color: #5b6b7a; text-align: center; margin: 12px 0 0; }
+
+.hs-btn {
+  display: block; width: 100%; box-sizing: border-box;
+  margin-top: 16px; border: none; border-radius: 12px;
+  padding: 14px 22px; font-family: inherit;
+  font-size: clamp(.95rem, 2.7vw, 1.05rem); font-weight: 700;
+  color: #fff; background: linear-gradient(135deg, var(--hs-azul), var(--hs-azul-claro));
+  cursor: pointer; text-align: center; text-decoration: none;
+  box-shadow: 0 8px 20px rgba(11, 61, 107, .3);
+}
+.hs-btn:active { transform: translateY(1px); }
+
+/* ---------- publicidade ---------- */
+
+.hs-ad {
+  width: 100%; max-width: 540px;
+  border-radius: 20px; padding: clamp(18px, 4.5vw, 30px);
+  color: #fff; text-align: center;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .3);
+}
+.hs-ad-selo {
+  display: inline-block; background: rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px;
+  padding: 5px 14px; font-size: clamp(.68rem, 2vw, .78rem); font-weight: 700; margin-bottom: 14px;
+}
+.hs-ad-topo { display: flex; align-items: center; gap: 14px; text-align: left; margin-bottom: 12px; }
+.hs-ad-logo {
+  flex: 0 0 auto; width: 62px; height: 62px; border-radius: 14px;
+  background: #fff; display: grid; place-items: center;
+  font-size: 1.5rem; font-weight: 900;
+}
+.hs-ad-logo-img { width: auto; min-width: 88px; max-width: 148px; height: 66px; padding: 8px 12px; }
+.hs-ad-logo-img img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.hs-ad-logo.hs-fundo-escuro { background: #10233a; }
+.hs-ad-topo h3 { margin: 0; font-size: clamp(1.05rem, 3.5vw, 1.35rem); }
+.hs-ad-topo span { font-size: clamp(.74rem, 2.2vw, .85rem); opacity: .88; }
+.hs-ad-previa {
+  background: rgba(0, 0, 0, .22); border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 10px; padding: 9px 12px; text-align: left;
+  font-size: clamp(.7rem, 1.95vw, .78rem); margin: 0 0 12px;
+}
+.hs-ad-tagline { font-size: clamp(.95rem, 3vw, 1.1rem); font-weight: 700; margin: 0 0 8px; }
+.hs-ad-claim { font-size: clamp(.82rem, 2.4vw, .92rem); opacity: .93; margin: 0 0 14px; }
+.hs-ad-chips { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-bottom: 14px; }
+.hs-ad-chip {
+  background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 999px; padding: 5px 12px; font-size: clamp(.7rem, 2vw, .78rem); font-weight: 600;
+}
+.hs-btn-branco { background: #fff; color: #12212f; box-shadow: none; }
+.hs-ad-demo {
+  font-size: clamp(.7rem, 2vw, .78rem); opacity: .9; margin: 12px 0 0;
+  background: rgba(0, 0, 0, .16); border-radius: 10px; padding: 9px 12px;
+}
+.hs-ad-demo a, .hs-ad-rodape a { color: #fff; }
+.hs-btn-continuar {
+  background: rgba(255, 255, 255, .18);
+  border: 2px solid rgba(255, 255, 255, .55); box-shadow: none;
+}
+.hs-btn-continuar:disabled { opacity: .6; cursor: not-allowed; }
+.hs-ad-rodape { font-size: clamp(.66rem, 1.9vw, .74rem); opacity: .8; margin: 13px 0 0; }
+
+@media (max-width: 640px) {
+  .hs-card input { font-size: 16px; }
+}
+
+/* No celular a marca fica compacta para sobrar altura ao jogo e aos controles */
+@media (max-width: 680px) {
+  .hs-topo { padding: 4px 10px; padding-top: calc(4px + env(safe-area-inset-top)); }
+  .hs-topo-marca { gap: 8px; }
+  .hs-topo-marca img { width: 26px; padding: 2px; border-radius: 6px; }
+  .hs-topo-marca strong { font-size: .85rem; }
+  .hs-topo-marca small { display: none; }
+  .hs-topo-link { display: none; }
+  .hs-rodape { padding: 5px 10px calc(6px + env(safe-area-inset-bottom)); font-size: .66rem; gap: 6px; }
+
+  /* durante a partida o rodapé sai da frente: no celular ele roubava espaço
+     e ficava colado nos controles de toque */
+  body.hs-jogando .hs-rodape { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hs-tela, .hs-btn { transition: none !important; animation: none !important; }
+}

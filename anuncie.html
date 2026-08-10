@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b3d6b">
+<meta name="description" content="Patrocine o Quiz do Milhão SSMA e coloque sua marca na frente de profissionais de segurança do trabalho em todo o Brasil.">
+<title>Anuncie no Quiz do Milhão SSMA | Hora da Segurança</title>
+<link rel="icon" href="logo.png">
+<style>
+  /* Página independente do CSS do jogo: nada aqui depende de style.css */
+  :root {
+    --azul: #0b3d6b; --azul-claro: #1565c0; --azul-suave: #eef5fc;
+    --ambar: #f59e0b; --tinta: #12212f; --cinza: #5b6b7a; --borda: #d8e2ec;
+    --sombra: 0 10px 28px rgba(11, 61, 107, .1);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #f6f9fc; color: var(--tinta);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .topo {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px clamp(14px, 4vw, 28px);
+    padding-top: calc(12px + env(safe-area-inset-top));
+    background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+    color: #fff; box-shadow: 0 3px 14px rgba(11, 61, 107, .28);
+  }
+  .topo img { width: 40px; height: auto; border-radius: 8px; background: #fff; padding: 3px; }
+  .topo strong { display: block; font-size: clamp(.95rem, 2.6vw, 1.1rem); }
+  .topo span { font-size: clamp(.7rem, 2vw, .82rem); opacity: .88; }
+  main { max-width: 940px; margin: 0 auto; padding: clamp(16px, 4vw, 30px); }
+  .hero {
+    background: radial-gradient(circle at 88% 10%, #38bdf855, transparent 45%),
+                linear-gradient(135deg, #0b3d6b, #1565c0);
+    color: #fff; border-radius: 20px; padding: clamp(22px, 5vw, 40px);
+    box-shadow: 0 18px 44px rgba(11, 61, 107, .3);
+  }
+  .selo {
+    display: inline-block; background: var(--ambar); color: #3b2200;
+    border-radius: 999px; padding: 5px 14px; font-size: clamp(.7rem, 2vw, .8rem); font-weight: 700;
+  }
+  .hero h1 { color: #fff; font-size: clamp(1.4rem, 5vw, 2.2rem); margin: .5em 0 .3em; line-height: 1.2; }
+  .hero h1 em { color: #fde68a; font-style: normal; }
+  .hero p { font-size: clamp(.92rem, 2.7vw, 1.05rem); opacity: .95; margin: 0; }
+  .grade { display: grid; gap: 14px; grid-template-columns: 1fr; margin: 24px 0; }
+  @media (min-width: 780px) { .grade { grid-template-columns: repeat(3, 1fr); } }
+  .item { background: #fff; border: 1px solid var(--borda); border-radius: 14px; padding: 16px 18px; box-shadow: var(--sombra); }
+  .item h3 { color: var(--azul); margin: 0 0 8px; font-size: clamp(1rem, 3vw, 1.12rem); }
+  .item p { font-size: clamp(.84rem, 2.4vw, .93rem); color: var(--cinza); margin: 0; }
+  .cartao { background: #fff; border: 1px solid var(--borda); border-radius: 18px; padding: clamp(18px, 4vw, 30px); box-shadow: var(--sombra); }
+  .etiqueta {
+    display: inline-block; background: var(--azul-suave); color: var(--azul);
+    border-radius: 999px; padding: 5px 13px; font-size: .78rem; font-weight: 700;
+  }
+  .cartao h2 { font-size: clamp(1.15rem, 3.6vw, 1.5rem); margin: 12px 0 16px; }
+  .lista { list-style: none; padding: 0; display: grid; gap: 10px; margin: 0 0 16px; }
+  .lista li {
+    background: var(--azul-suave); border-radius: 12px; padding: 12px 15px;
+    font-size: clamp(.85rem, 2.4vw, .94rem); color: var(--azul); font-weight: 600;
+  }
+  .nota { font-size: clamp(.76rem, 2.1vw, .85rem); color: var(--cinza); }
+  .contato { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .btn {
+    flex: 1 1 220px; display: block; text-align: center; text-decoration: none;
+    border-radius: 12px; padding: 14px 20px; font-weight: 700;
+    font-size: clamp(.9rem, 2.5vw, 1rem);
+  }
+  .btn-principal { background: linear-gradient(135deg, var(--azul), var(--azul-claro)); color: #fff; }
+  .btn-zap { background: #16a34a; color: #fff; }
+  .btn-secundario { background: #fff; color: var(--azul); border: 2px solid var(--borda); }
+  .rodape {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    padding: 18px 14px calc(20px + env(safe-area-inset-bottom));
+    background: var(--azul); color: rgba(255, 255, 255, .85); font-size: clamp(.72rem, 2vw, .82rem);
+  }
+  .rodape a { color: #fff; font-weight: 600; text-decoration: none; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <img src="logo.png" alt="Hora da Segurança">
+  <div>
+    <strong>Anuncie neste treinamento</strong>
+    <span>Quiz do Milhão SSMA · cota de patrocínio</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="selo">Espaço publicitário disponível</span>
+    <h1>Sua marca dentro de um treinamento<br><em>que o profissional de SST joga até o fim.</em></h1>
+    <p>
+      O <strong>Quiz do Milhão SSMA</strong> é um jogo gratuito de perguntas sobre segurança do trabalho,
+      saúde ocupacional e meio ambiente: 16 perguntas em dificuldade crescente, quatro ajudas e a decisão
+      de arriscar ou parar a cada rodada. Quem entra, entra cadastrado e joga do começo ao fim —
+      é atenção real, não impressão de banner.
+    </p>
+  </section>
+
+  <div class="grade">
+    <div class="item">
+      <h3>Quem joga</h3>
+      <p>Técnicos e engenheiros de segurança, SESMT, CIPA, gestores ambientais, consultores e lideranças
+         de operação — o mesmo público que decide compra de serviço de SST.</p>
+    </div>
+    <div class="item">
+      <h3>Onde sua marca aparece</h3>
+      <p>Tela exclusiva nos intervalos entre as faixas de dificuldade e antes do resultado final, em tela
+         cheia, com sua identidade visual, sua proposta em uma linha, três diferenciais e botão direto
+         para o seu site — sem concorrer com nenhum outro anúncio.</p>
+    </div>
+    <div class="item">
+      <h3>O que você recebe</h3>
+      <p>Link próprio da versão patrocinada para usar nas suas redes e no seu comercial, além do relatório
+         de participantes que concluíram o treinamento no período.</p>
+    </div>
+  </div>
+
+  <div class="cartao">
+    <span class="etiqueta">Como funciona a cota</span>
+    <h2>Simples, sem intermediário e sem taxa de plataforma</h2>
+    <ul class="lista">
+      <li>1 · Você envia logotipo, cores e a frase que quer comunicar.</li>
+      <li>2 · Montamos a tela de patrocínio e enviamos para sua aprovação em até 3 dias úteis.</li>
+      <li>3 · Publicamos no jogo e você recebe o link da sua versão para divulgar.</li>
+      <li>4 · Enquanto o logotipo oficial não chega, usamos uma marca tipográfica provisória — trocada assim que você aprovar.</li>
+    </ul>
+    <p class="nota">
+      As marcas exibidas hoje no jogo são fictícias, de demonstração. Nenhuma empresa real é apresentada como
+      patrocinadora sem contrato.
+    </p>
+
+    <div class="contato">
+      <a class="btn btn-principal" href="mailto:hseg.flow@horadaseguranca.com?subject=Patroc%C3%ADnio%20no%20Quiz%20do%20Milh%C3%A3o%20SSMA">
+        Falar por e-mail
+      </a>
+      <a class="btn btn-zap" href="https://wa.me/5564984463639?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20patroc%C3%ADnio%20no%20Quiz%20do%20Milh%C3%A3o%20SSMA"
+         target="_blank" rel="noopener noreferrer">
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-secundario" href="index.html">Ver o jogo</a>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <a href="https://www.horadaseguranca.com" target="_blank" rel="noopener noreferrer">www.horadaseguranca.com</a>
+  <span>·</span>
+  <span>Plínio Gomes · (64) 98446-3639</span>
+  <span>·</span>
+  <span>hseg.flow@horadaseguranca.com</span>
+</footer>
+
+</body>
+</html>
