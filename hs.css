@@ -24,11 +24,22 @@ body {
   height: 100dvh;
   min-height: 100dvh;
 }
+/* O container do jogo entra aqui pelos três nomes já usados nos projetos.
+   `min-height: 0` + `overflow-y: auto` são o que impede o conteúdo de
+   transbordar e passar por baixo da faixa "Anuncie neste jogo": sem isso,
+   em janela larga e baixa o rodapé cobre o fim do tabuleiro. */
 body > #app-container,
-body > #app {
+body > #app,
+body > .app-container,
+body > .game-container {
   flex: 1 1 auto;
   height: auto !important;
   min-height: 0;
+  /* item flex nasce com min-width: auto e nao encolhe abaixo do conteudo:
+     sem isto um titulo com nowrap estica o container alem da tela */
+  min-width: 0;
+  max-width: 100%;
+  overflow-y: auto;
 }
 .hs-topo, .hs-rodape { flex: 0 0 auto; }
 
